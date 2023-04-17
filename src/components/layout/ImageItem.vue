@@ -6,7 +6,7 @@
 import { imagesUrl } from "@/config";
 
 export default {
-	name: "PhotosList",
+	name: "ImageItem",
 	props: {
 		src: {
 			type: String,
@@ -23,6 +23,6 @@ export default {
 
 <style lang="scss">
 .image {
-	width: 100%;
+	width: 15%;
 }
 </style>
