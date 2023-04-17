@@ -3,7 +3,11 @@
 		<div class="container p-p-4">
 			<the-header></the-header>
 			<main>
-				<router-view />
+				<router-view v-slot="{ Component }">
+					<SlideFadeAnimation>
+						<component :is="Component" :key="$route.fullPath"/>
+					</SlideFadeAnimation>
+				</router-view>
 			</main>
 			<the-footer></the-footer>
 		</div>
@@ -19,6 +23,7 @@ export default {
 	methods: { ...mapActions(["fetchCategories"]) },
 	mounted() {
 		this.fetchCategories();
+		
 	},
 };
 </script>
