@@ -10,11 +10,16 @@
 	</div>
 </template>
 <script>
+import { mapActions } from "vuex";
 import theHeader from "./components/layout/theHeader.vue";
 import theFooter from "./components/layout/theFooter.vue";
 export default {
 	name: "App",
 	components: { theHeader, theFooter },
+	methods: { ...mapActions(["fetchCategories"]) },
+	mounted() {
+		this.fetchCategories();
+	},
 };
 </script>
 

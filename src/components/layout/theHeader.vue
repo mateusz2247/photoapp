@@ -1,6 +1,6 @@
 <template>
 	<header class="header p-mt-2 p-mb-2">
-		<span>Photos App |</span>Share your photo
+		<span><a href="/a">Photos App </a>|</span>Share your photo
 		<Button size="small" label="Submit" icon="pi pi-plus" rounded />
 	</header>
 </template>
@@ -15,5 +15,8 @@ export default {
 span {
 	font-size: 1.5rem;
 	font-weight: bolder;
+}
+a{
+    text-decoration: none;
 }
 </style>
