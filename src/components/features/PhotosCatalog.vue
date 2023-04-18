@@ -1,10 +1,17 @@
 <template>
+	<div class="loader " v-show="photosRequest.pending">
+		<ProgressSpinner />
+	</div>
+	<div class="loader " v-show="photosRequest.error">
+		<h1>Error! Try again....</h1>
+	</div>
 	<div ref="catalog" class="scrollContainer">
 		<PhotosList class="grid" :photos="photos"></PhotosList>
 	</div>
 </template>
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions,mapState } from "vuex";
+import ProgressSpinner from 'primevue/progressspinner';
 import PhotosList from "../shared/PhotosList.vue";
 export default {
 	name: "PhotosCatalog",
@@ -18,7 +25,10 @@ export default {
 			type: String,
 		},
 	},
-	computed: mapGetters({ photos: "allPhotos" }),
+	computed: {
+		...mapGetters({ photos: "allPhotos" }),
+		...mapState(["photosRequest"])
+	} ,/* ...mapState(["photosRequest"]), */
 	methods: {
 		...mapActions(["fetchPhotos", "fetchCategoryPhotos"]),
 		loadPhotos() {
@@ -31,7 +41,6 @@ export default {
 				});
 		},
 		handleScroll() {
-			
 			const elem = this.$refs.catalog;
 			const bottomOfWindow =
 				Math.ceil(elem.scrollTop) >= elem.scrollHeight - elem.offsetHeight;
@@ -48,11 +57,10 @@ export default {
 		if (!this.category) this.fetchPhotos(1);
 		else this.fetchCategoryPhotos({ category: this.category, page: 1 });
 	},
-	mounted(){
+	mounted() {
 		this.prepareScroll();
-		
 	},
-	components: { PhotosList },
+	components: { PhotosList, ProgressSpinner },
 };
 </script>
 <style scoped lang="scss">
@@ -60,5 +68,13 @@ export default {
 	max-height: 1200px;
 	overflow-y: auto;
 	overflow-x: hidden;
+}
+.loader{
+	position:absolute;
+	background-color: aliceblue;
+	height: 100%;
+	width: 100%;
+	z-index: 100;
+	opacity: 0.9;
 }
 </style>
