@@ -6,16 +6,16 @@
 		<p>{{ src }}</p> -->
 
 	<div
-		class="card relative flex flex-row align-items-center justify-content-center p-shadow-4">
-		<Card class="shadow-4" style="width: 15rem">
+		class="card  flex flex-row align-items-center justify-content-center p-shadow-4">
+		<Card class="shadow-4 relative" style="width: 15rem">
 			<template #header>
 				<ImageItem :src="src"></ImageItem>
 			</template>
 			<template #title> {{ title }} </template>
 			<template #subtitle>by {{ author }} </template>
-			<template #content>
+			<template  #content >
 				<Tag severity="info" rounded>{{ category }}</Tag>
-				<div class="absolute top-0 ">
+				<div class="voting absolute top-0 right-0 ">
 					<p style="font-weight: bolder;">{{votes}}</p>
 				<Button
 					icon="pi pi-star"
@@ -57,6 +57,13 @@ export default {
 	},
 };
 </script>
-<style lang="scss"
-
-></style>
+<style lang="scss">
+.voting {
+	height:70px;
+	width:50px;
+}
+.p-card-content {
+	padding-top: 0em;
+	padding-bottom: 0px;
+}
+</style>
