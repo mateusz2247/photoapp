@@ -23,7 +23,7 @@ export default {
 
 <style lang="scss">
 .image {
-	height: 400px;
+	height: 350px;
 	object-fit: cover;
 }
 </style>

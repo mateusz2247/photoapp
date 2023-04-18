@@ -1,7 +1,7 @@
 <template>
-	<header class="header p-mt-2 p-mb-2">
-		<span><a href="/">Photos App </a>|</span>Share your photo
-		<Button size="small" label="Submit" icon="pi pi-plus" rounded />
+	<header class="header ml-5 mt-2 mb-2 flex justify-content-between ">
+		<p><a href="/">Photos App </a>|Share your photo</p>
+		<Button class="Button mr-5" size="small" label="Submit" icon="pi pi-plus" rounded />
 	</header><CategoriesList></CategoriesList>
 </template>
 <script>
@@ -13,11 +13,10 @@ export default {
 };
 </script>
 <style lang="scss">
-span {
-	font-size: 1.5rem;
-	font-weight: bolder;
-}
+
 a{
     text-decoration: none;
+	font-size: 1.5rem;
+	font-weight: bolder;
 }
 </style>

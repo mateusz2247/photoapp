@@ -4,8 +4,8 @@
 			{{ category.name }}
 		</li>
 	</ul> -->
-    <div>
-        <Button :key="index" v-for="(category, index) in categories" size="small" :label="category.name" outlined rounded />
+    <div class="flex justify-content ml-5 mt-2 mb-2">
+        <Button class="mr-2" :key="index" v-for="(category, index) in categories" size="small" :label="category.name" outlined rounded />
 
     </div>
 </template>
