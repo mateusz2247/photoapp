@@ -6,7 +6,7 @@
 		<h1>Error! Try again....</h1>
 	</div>
 	<div ref="catalog" class="scrollContainer">
-		<PhotosList class="grid" :photos="photos"></PhotosList>
+		<PhotosList @vote="this.addVote2(id)" class="grid" :photos="photos"></PhotosList>
 	</div>
 </template>
 <script>
@@ -30,7 +30,11 @@ export default {
 		...mapState(["photosRequest"])
 	} ,/* ...mapState(["photosRequest"]), */
 	methods: {
-		...mapActions(["fetchPhotos", "fetchCategoryPhotos"]),
+		...mapActions(["fetchPhotos", "fetchCategoryPhotos","addVote"]),
+		addVote2(id){
+			console.log("dodaje foto");
+			this.addVote(id)
+		},
 		loadPhotos() {
 			this.currentPage++;
 			if (!this.category) this.fetchPhotos(this.currentPage);

@@ -62,7 +62,7 @@ export default createStore({
 		},
 	},
 	actions: {
-		async fetchVotes({commit},id){
+		async addVote({commit},id){
 			const res = await axios.put(`${apiUrl}/photos/vote/:${id}`);
 			commit("ADD_VOTE",res.id)
 		},

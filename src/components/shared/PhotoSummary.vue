@@ -1,32 +1,26 @@
 <template>
-	<!-- <p>{{ title }}</p>
-		<p>{{ author }}</p>
-		<p>{{ category }}</p>
-		<p>{{ votes }}</p>
-		<p>{{ src }}</p> -->
-
 	<div
-		class="card  flex flex-row align-items-center justify-content-center p-shadow-4">
+		class="card flex flex-row align-items-center justify-content-center p-shadow-4">
 		<Card class="shadow-4 relative" style="width: 15rem">
 			<template #header>
 				<ImageItem :src="src"></ImageItem>
 			</template>
 			<template #title> {{ title }} </template>
 			<template #subtitle>by {{ author }} </template>
-			<template  #content >
+			<template #content>
 				<Tag severity="info" rounded>{{ category }}</Tag>
-				<div class="voting absolute top-0 right-0 ">
-					<p style="font-weight: bolder;">{{votes}}</p>
-				<Button
-					icon="pi pi-star"
-					severity="help"
-					text
-					rounded
-					size="large"
-					aria-label="Favorite" />
+				<div class="voting absolute top-0 right-0">
+					<p style="font-weight: bolder">{{ votes }}</p>
+					<Button
+						@click="$emit('vote', id)"
+						icon="pi pi-star"
+						severity="help"
+						text
+						rounded
+						size="large"
+						aria-label="Favorite" />
 				</div>
 			</template>
-	
 		</Card>
 	</div>
 </template>
@@ -59,8 +53,8 @@ export default {
 </script>
 <style lang="scss">
 .voting {
-	height:70px;
-	width:50px;
+	height: 70px;
+	width: 50px;
 }
 .p-card-content {
 	padding-top: 0em;
