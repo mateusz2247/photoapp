@@ -23,6 +23,10 @@ export default createStore({
 		},
 	},
 	mutations: {
+		ADD_VOTE(state, id) {
+			const index = state.photos.findIndex((obj) => obj.id == id);
+			state.photos[index].votes++;
+		},
 		UPDATE_CATEGORIES(state, data) {
 			state.categories = data;
 		},
@@ -58,6 +62,10 @@ export default createStore({
 		},
 	},
 	actions: {
+		async fetchVotes({commit},id){
+			const res = await axios.put(`${apiUrl}/photos/vote/:${id}`);
+			commit("ADD_VOTE",res.id)
+		},
 		async fetchCategories({ commit }) {
 			const res = await axios.get(`${apiUrl}/categories`);
 			commit("UPDATE_CATEGORIES", res.data);
@@ -98,34 +106,6 @@ export default createStore({
 				page,
 			});
 		},
-
-		/* async fetchPhotos({ commit }, page) {
-			try {
-				commit("START_PHOTOS_REQUEST");
-				const res = await axios.get(`${apiUrl}/photos/${page}`);
-				commit("END_PHOTOS_REQUEST");
-
-				if (page > 1) commit("ADD_PHOTOS", res.data);
-				else commit("UPDATE_PHOTOS", res.data);
-			} catch (err) {
-				commit("ERROR_PHOTOS_REQUEST");
-			}
-		},
-
-		async fetchCategoryPhotos({ commit }, { category, page }) {
-			try {
-				commit("START_PHOTOS_REQUEST");
-				const res = await axios.get(`${apiUrl}/photos/${category}/${page}`);
-				commit("END_PHOTOS_REQUEST");
-				if (page > 1) {
-					commit("ADD_PHOTOS", res.data);
-				} else {
-					commit("UPDATE_PHOTOS", res.data);
-				}
-			} catch (err) {
-				commit("ERROR_PHOTOS_REQUEST");
-			}
-		}, */
 	},
 	modules: {},
 });
