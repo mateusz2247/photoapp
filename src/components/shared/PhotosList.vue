@@ -1,6 +1,6 @@
 <template>
 	
-    <PhotoSummary 
+    <PhotoSummary class="col-4"
     v-for="(photo, index) in photos" :key="index"
     :title="photo.title"
     :author="photo.author"

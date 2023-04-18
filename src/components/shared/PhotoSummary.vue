@@ -5,8 +5,8 @@
 		<p>{{ votes }}</p>
 		<p>{{ src }}</p> -->
 
-	<div class="card flex align-items-center justify-content-center">
-		<Card style="width: 15em">
+	<div class="card flex align-items-center justify-content-center p-shadow-4">
+		<Card class="p-shadow-4" style="width: 15rem">
 			<template #header>
 				<ImageItem :src="src"></ImageItem>
 			</template>
@@ -14,7 +14,12 @@
 			<template #subtitle>by {{ author }} </template>
 			<template #content>
 				<Tag severity="info" rounded>{{ category }}</Tag>
-                <Button icon="pi pi-star" severity="help" text rounded aria-label="Favorite" />
+				<Button
+					icon="pi pi-star"
+					severity="help"
+					text
+					rounded
+					aria-label="Favorite" />
 			</template>
 			<!-- 	<template #footer>
 				<Button icon="pi pi-check" label="Save" />

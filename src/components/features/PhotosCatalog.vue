@@ -1,5 +1,5 @@
 <template>
-	<PhotosList :photos="photos"></PhotosList>
+	<PhotosList class="grid" :photos="photos"></PhotosList>
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
