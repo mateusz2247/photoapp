@@ -17,7 +17,7 @@ import { apiUrl } from "@/config";
 
 export default createStore({
 	state: {
-		
+		categories:[],
 		photosRequest: {
 			pending: false,
 			error: false,
