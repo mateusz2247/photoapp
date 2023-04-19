@@ -5,7 +5,7 @@
 			<main>
 				<router-view v-slot="{ Component }">
 					<SlideFadeAnimation>
-						<component :is="Component" :key="$route.fullPath"/>
+						<component :is="Component" :key="$route.fullPath" />
 					</SlideFadeAnimation>
 				</router-view>
 			</main>
@@ -20,10 +20,9 @@ import theFooter from "./components/layout/theFooter.vue";
 export default {
 	name: "App",
 	components: { theHeader, theFooter },
-	methods: { ...mapActions(["fetchCategories"]) },
+	methods: { ...mapActions(["Categories/fetchCategories"]) },
 	mounted() {
 		this.fetchCategories();
-		
 	},
 };
 </script>

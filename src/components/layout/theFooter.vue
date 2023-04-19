@@ -7,7 +7,7 @@ import SmallTitle from "./SmallTitle.vue";
 
 export default {
 	name: "theFooter",
-	computed: {...mapGetters({ amount: "categoriesAmount" }),
+	computed: {...mapGetters({ amount: "Categories/categoriesAmount" }),
 	
 },components:{
 	SmallTitle

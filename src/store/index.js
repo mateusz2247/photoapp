@@ -1,16 +1,16 @@
-/* import { createStore } from 'vuex'
-import Photos from './modules/Photos'
-import Categories from './modules/Categories'
+import { createStore } from 'vuex'
+import Photos from './modules/Photos.js'
+import Categories from './modules/Categories.js'
 
 export default createStore({
   modules: {
     Photos,
     Categories
   }
-}) */
+})
 
 
-
+/* 
 import { createStore } from "vuex";
 import axios from "axios";
 import { apiUrl } from "@/config";
@@ -97,9 +97,7 @@ export default createStore({
 
 				commit("START_PHOTOS_REQUEST");
 				const res = await axios.get(url);
-				/* await new Promise((resolve, reject) => {
-					setTimeout(resolve, 2000);
-				}); */
+				
 				commit("END_PHOTOS_REQUEST");
 
 				// if the set is not full, toggle allPhotosLoaded
@@ -125,3 +123,4 @@ export default createStore({
 	},
 	modules: {},
 });
+ */

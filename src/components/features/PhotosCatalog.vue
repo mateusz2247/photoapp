@@ -13,6 +13,7 @@
 import { mapGetters, mapActions,mapState } from "vuex";
 import ProgressSpinner from 'primevue/progressspinner';
 import PhotosList from "../shared/PhotosList.vue";
+
 export default {
 	name: "PhotosCatalog",
 	data() {
@@ -27,11 +28,11 @@ export default {
 		},
 	},
 	computed: {
-		...mapGetters({ photos: "allPhotos" }),
-		...mapState(["photosRequest"])
+		...mapGetters({ photos: "Photos/allPhotos" }),
+		...mapState(["Photos/photosRequest"])
 	} ,/* ...mapState(["photosRequest"]), */
 	methods: {
-		...mapActions(["fetchPhotos", "fetchCategoryPhotos","addVote"]),
+		...mapActions(["Photos/fetchPhotos", "Photos/fetchCategoryPhotos","Photos/addVote"]),
 		addVote2(id){
 			
 			console.log(id)
