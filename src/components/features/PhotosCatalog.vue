@@ -6,7 +6,7 @@
 		<h1>Error! Try again....</h1>
 	</div>
 	<div ref="catalog" class="scrollContainer">
-		<PhotosList @vote="addVote2" class="grid" :photos="photos"></PhotosList>
+		<PhotosList @vote="addVote2(id)" class="grid" :photos="photos"></PhotosList>
 	</div>
 </template>
 <script>
@@ -22,6 +22,7 @@ export default {
 	},
 	props: {
 		category: {
+			
 			type: String,
 		},
 	},
@@ -33,6 +34,7 @@ export default {
 		...mapActions(["fetchPhotos", "fetchCategoryPhotos","addVote"]),
 		addVote2(id){
 			console.log("dodaje foto");
+			console.log(id)
 			this.addVote(id)
 		},
 		loadPhotos() {

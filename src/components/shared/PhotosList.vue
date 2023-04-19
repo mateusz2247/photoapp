@@ -20,9 +20,11 @@ import PhotoSummary from "./PhotoSummary.vue";
 export default {
 	name: "PhotosList",
 	props: {
+
 		photos: {
 			type: Array,
 		},
+		
 	},
 	components: { PhotoSummary },
 };

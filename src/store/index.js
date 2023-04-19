@@ -25,6 +25,7 @@ export default createStore({
 	mutations: {
 		ADD_VOTE(state, id) {
 			const index = state.photos.findIndex((obj) => obj.id == id);
+
 			state.photos[index].votes++;
 		},
 		UPDATE_CATEGORIES(state, data) {
@@ -63,6 +64,7 @@ export default createStore({
 	},
 	actions: {
 		async addVote({commit},id){
+			
 			const res = await axios.put(`${apiUrl}/photos/vote/:${id}`);
 			commit("ADD_VOTE",res.id)
 		},
