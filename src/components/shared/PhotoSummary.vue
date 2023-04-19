@@ -12,7 +12,7 @@
 				<div class="voting absolute top-0 right-0">
 					<p style="font-weight: bolder">{{ votes }}</p>
 					<Button
-						@click="$emit('vote', id)"
+						@click="$emit('vote')"
 						icon="pi pi-star"
 						severity="help"
 						text

@@ -10,10 +10,11 @@
 			:votes="photo.votes"
 			:src="photo.src"
 			:id="photo.id"
-			@vote="vote"></PhotoSummary>
+			@vote="$emit('vote',photo.id)"></PhotoSummary>
 	</div>
 </template>
 <script>
+
 import PhotoSummary from "./PhotoSummary.vue";
 
 export default {

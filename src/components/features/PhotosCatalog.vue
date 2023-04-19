@@ -6,7 +6,7 @@
 		<h1>Error! Try again....</h1>
 	</div>
 	<div ref="catalog" class="scrollContainer">
-		<PhotosList @vote="this.addVote2(id)" class="grid" :photos="photos"></PhotosList>
+		<PhotosList @vote="addVote2" class="grid" :photos="photos"></PhotosList>
 	</div>
 </template>
 <script>
@@ -69,7 +69,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .scrollContainer {
-	max-height: 1200px;
+	max-height: 1000px;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
