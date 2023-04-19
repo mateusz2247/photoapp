@@ -1,9 +1,9 @@
 <template>
 	<div
-		class="card flex flex-row align-items-center justify-content-center p-shadow-4">
+		class="photo-summary card flex flex-row align-items-center justify-content-center p-shadow-4">
 		<Card class="shadow-4 relative" style="width: 15rem">
 			<template #header>
-				<ImageItem :src="src"></ImageItem>
+				<ImageItem @vote="$emit('vote')" :src="src"></ImageItem>
 			</template>
 			<template #title> {{ title }} </template>
 			<template #subtitle>by {{ author }} </template>
@@ -12,7 +12,6 @@
 				<div class="voting absolute top-0 right-0">
 					<p style="font-weight: bolder">{{ votes }}</p>
 					<Button
-						@click="$emit('vote')"
 						icon="pi pi-star"
 						severity="help"
 						text
@@ -56,8 +55,8 @@ export default {
 	height: 70px;
 	width: 50px;
 }
-.p-card-content {
-	padding-top: 0em;
+.photo-summary .p-card .p-card-content {
+	padding-top: 0px;
 	padding-bottom: 0px;
 }
 </style>

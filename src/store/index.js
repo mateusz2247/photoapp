@@ -1,9 +1,23 @@
+/* import { createStore } from 'vuex'
+import Photos from './modules/Photos'
+import Categories from './modules/Categories'
+
+export default createStore({
+  modules: {
+    Photos,
+    Categories
+  }
+}) */
+
+
+
 import { createStore } from "vuex";
 import axios from "axios";
 import { apiUrl } from "@/config";
 
 export default createStore({
 	state: {
+		
 		photosRequest: {
 			pending: false,
 			error: false,
@@ -24,7 +38,7 @@ export default createStore({
 	},
 	mutations: {
 		ADD_VOTE(state, id) {
-			const index = state.photos.findIndex((obj) => obj.id == id);
+			const index = state.photos.findIndex((obj) => obj._id == id);
 
 			state.photos[index].votes++;
 		},
@@ -65,8 +79,8 @@ export default createStore({
 	actions: {
 		async addVote({commit},id){
 			
-			const res = await axios.put(`${apiUrl}/photos/vote/:${id}`);
-			commit("ADD_VOTE",res.id)
+			await axios.put(`${apiUrl}/photos/vote/${id}`);
+			commit("ADD_VOTE",id)
 		},
 		async fetchCategories({ commit }) {
 			const res = await axios.get(`${apiUrl}/categories`);

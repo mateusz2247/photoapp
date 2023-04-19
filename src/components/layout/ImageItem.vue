@@ -1,8 +1,8 @@
 <template>
-	<div class="colored" v-show="isHovered"></div>
+	<div @click="$emit('vote')" @mouseleave="mouseOver" class="colored" v-show="isHovered"></div>
 	<img
-		@mouseover="mouseOver"
-		@mouseleave="mouseOver"
+		@mouseenter="mouseOver"
+	
 		:src="imageSrc"
 		class="image" />
 </template>

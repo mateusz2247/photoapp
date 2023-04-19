@@ -9,8 +9,8 @@
 			:category="photo.category"
 			:votes="photo.votes"
 			:src="photo.src"
-			:id="photo.id"
-			@vote="$emit('vote',photo.id)"></PhotoSummary>
+			:id="photo._id"
+			@vote="$emit('vote',photo._id)"></PhotoSummary>
 	</div>
 </template>
 <script>
