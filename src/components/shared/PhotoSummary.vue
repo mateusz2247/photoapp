@@ -1,14 +1,16 @@
 <template>
 	<div
 		class="photo-summary card flex flex-row align-items-center justify-content-center p-shadow-4">
-		<Card class="shadow-4 relative" style="width: 15rem">
+		<Card @click="$router.push(':' + id)" class="shadow-4 relative" style="width: 15rem">
 			<template #header>
 				<ImageItem @vote="$emit('vote')" :src="src"></ImageItem>
 			</template>
-			<template #title> {{ title }} </template>
-			<template #subtitle>by {{ author }} </template>
+			<div ></div>
+				<template #title > {{ title }} </template>
+				<template #subtitle>by {{ author }} </template>
+			
 			<template #content>
-				<Tag severity="info" rounded>{{ category }}</Tag>
+				<Tag @click="$router.push(':' + id)" severity="info" rounded>{{ category }} </Tag>
 				<div class="voting absolute top-0 right-0">
 					<p style="font-weight: bolder">{{ votes }}</p>
 					<Button
@@ -32,6 +34,7 @@ export default {
 	name: "PhotoSummary",
 	components: { ImageItem, Card, Tag, Button },
 	props: {
+		id: {},
 		src: {
 			type: String,
 		},

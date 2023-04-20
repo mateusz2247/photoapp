@@ -1,10 +1,17 @@
 <template>
 	<div class="home">
 		<div class="flex justify-content ml-5 mt-2 mb-2">
-			<PageTitle>{{$route.params.category.substring(1)}}</PageTitle>
+			<PageTitle>{{ $route.params.category.substring(1) }}</PageTitle>
 		</div>
 
-		<PhotosCatalog :category="$route.params.category.substring(1)"></PhotosCatalog>
+		<PhotosCatalog
+			:category="$route.params.category.substring(1)"></PhotosCatalog>
+			<router-view v-slot="{ Component }">
+					<SlideFadeAnimation>
+						<component :is="Component" :key="$route.fullPath" />
+					</SlideFadeAnimation>
+				</router-view>
+		
 	</div>
 </template>
 
