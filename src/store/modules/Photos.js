@@ -35,24 +35,24 @@ export default {
 				success: false,
 			};
 		},
-		END_PHOTOS_REQUEST(state) {
+		END_REQUEST(state) {
 			state.photosRequest = {
 				pending: false,
 				error: false,
 				success: true,
 			};
 		},
-		ERROR_PHOTOS_REQUEST(state) {
+		ERROR_REQUEST(state) {
 			state.photosRequest = {
 				pending: false,
 				error: true,
 				success: false,
 			};
 		},
-		TOGGLE_ALL_PHOTOS_LOADED(state) {
+		TOGGLE_ALL_LOADED(state) {
 			state.allPhotosLoaded = !state.allPhotosLoaded;
 		},
-		UPDATE_PHOTOS(state, data) {
+		UPDATE(state, data) {
 			state.photos = data;
 		},
 	},
@@ -65,7 +65,7 @@ export default {
 			try {
 				// if it's first set of photos and allPhotosLoaded is true => make it default false
 				if (state.allPhotosLoaded && page === 1)
-					commit("TOGGLE_ALL_PHOTOS_LOADED");
+					commit("TOGGLE_ALL_LOADED");
 
 				// it's not the first page and allPhotosLoaded is true? => stop function
 				if (state.allPhotosLoaded) return false;
@@ -73,15 +73,15 @@ export default {
 				commit("START_REQUEST");
 				const res = await axios.get(url);
 				
-				commit("END_PHOTOS_REQUEST");
+				commit("END_REQUEST");
 
 				// if the set is not full, toggle allPhotosLoaded
-				if (res.data.length < 12) commit("TOGGLE_ALL_PHOTOS_LOADED");
+				if (res.data.length < 12) commit("TOGGLE_ALL_LOADED");
 
 				if (page > 1) commit("ADD_PHOTOS", res.data);
-				else commit("UPDATE_PHOTOS", res.data);
+				else commit("UPDATE", res.data);
 			} catch (err) {
-				commit("ERROR_PHOTOS_REQUEST");
+				commit("ERROR_REQUEST");
 			}
 		},
 
