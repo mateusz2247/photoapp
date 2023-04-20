@@ -28,7 +28,7 @@ export default {
 		ADD_PHOTOS(state, data) {
 			state.photos = [...state.photos, ...data];
 		},
-		START_PHOTOS_REQUEST(state) {
+		START_REQUEST(state) {
 			state.photosRequest = {
 				pending: true,
 				error: false,
@@ -52,6 +52,9 @@ export default {
 		TOGGLE_ALL_PHOTOS_LOADED(state) {
 			state.allPhotosLoaded = !state.allPhotosLoaded;
 		},
+		UPDATE_PHOTOS(state, data) {
+			state.photos = data;
+		},
 	},
 	actions: {
 		async addVote({ commit }, id) {
@@ -67,7 +70,7 @@ export default {
 				// it's not the first page and allPhotosLoaded is true? => stop function
 				if (state.allPhotosLoaded) return false;
 
-				commit("START_PHOTOS_REQUEST");
+				commit("START_REQUEST");
 				const res = await axios.get(url);
 				
 				commit("END_PHOTOS_REQUEST");

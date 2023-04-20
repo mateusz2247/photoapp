@@ -29,10 +29,10 @@ export default {
 	},
 	computed: {
 		...mapGetters({ photos: "Photos/allPhotos" }),
-		...mapState(["Photos/photosRequest"])
+		...mapState("Photos",["photosRequest"])
 	} ,/* ...mapState(["photosRequest"]), */
 	methods: {
-		...mapActions(["Photos/fetchPhotos", "Photos/fetchCategoryPhotos","Photos/addVote"]),
+		...mapActions("Photos",["fetchPhotos", "fetchCategoryPhotos","addVote"]),
 		addVote2(id){
 			
 			console.log(id)

@@ -20,7 +20,7 @@ import theFooter from "./components/layout/theFooter.vue";
 export default {
 	name: "App",
 	components: { theHeader, theFooter },
-	methods: { ...mapActions(["Categories/fetchCategories"]) },
+	methods: { ...mapActions("Categories", ["fetchCategories"]) },
 	mounted() {
 		this.fetchCategories();
 	},
