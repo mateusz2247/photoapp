@@ -4,7 +4,7 @@ import CategoryPhotosPage from "../pages/CategoryPhotosPage.vue";
 import SinglePhotoPage from "../pages/SinglePhotoPage.vue";
 /* import AddPhotoPage from "../pages/AddPhotoPage.vue"; */
 
-const loadComponent = (page) => {
+const loadComponent = () => {
 	return () => import(`../pages/AddPhotoPage.vue`);
 };
 
@@ -15,12 +15,12 @@ const routes = [
 		component: loadComponent("AddPhotoPage"),
 	},
 	{
-		path: "/:category",
+		path: "/category/:category",
 		name: "CategoryPhotosPage",
 		component: CategoryPhotosPage,
 		children: [
 			{
-				path: "/:photoId",
+				path: "/category/:category/:photoId",
 				name: "SinglePhotoPage",
 				component: SinglePhotoPage,
 			},
@@ -30,13 +30,13 @@ const routes = [
 		path: "/",
 		name: "HomePage",
 		component: HomePage,
-		children: [
+		/* children: [
 			{
-				path: "/:photoId",
+				path: "/photo/:photoId",
 				name: "SinglePhotoPage",
 				component: SinglePhotoPage,
 			},
-		],
+		], */
 	},
 ];
 

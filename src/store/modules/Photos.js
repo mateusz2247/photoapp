@@ -5,6 +5,7 @@ import { apiUrl } from '@/config'
 export default {
 	namespaced: true,
 	state: {
+		singlePhoto2: null,
 		photos: [],
 		photosRequest: {
 			pending: false,
@@ -14,9 +15,13 @@ export default {
 		allPhotosLoaded: false,
 		
 	},
+
 	getters: {
 		allPhotos(state) {
 			return state.photos;
+		},
+		loadedPhoto(state) {
+			return state.singlePhoto2;
 		},
 	},
 	mutations: {
@@ -55,8 +60,25 @@ export default {
 		UPDATE(state, data) {
 			state.photos = data;
 		},
+		UPDATE_SINGLE_PHOTO(state, data) {
+			state.singlePhoto2 = data;
+			
+		},
+
 	},
 	actions: {
+		async loadPhoto({ commit }, id) {
+			try{
+				
+			const res = await axios.get(`${apiUrl}/photos/id/${id}`);
+			console.log("Zaladowalem zdjecie o id: "+ id)
+			commit("UPDATE_SINGLE_PHOTO", res.data);
+			}catch(err)
+			{
+				console.log("Nie zaladowalem zdjecia")
+			}
+		},
+
 		async addVote({ commit }, id) {
 			await axios.put(`${apiUrl}/photos/vote/${id}`);
 			commit("ADD_VOTE", id);

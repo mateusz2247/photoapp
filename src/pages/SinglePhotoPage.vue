@@ -1,6 +1,7 @@
 <template>
-    
-	<SinglePhoto :photoId="$route.params.photoId.substring(1)"></SinglePhoto>
+
+	<SinglePhoto :photoId="$route.params.photoId"></SinglePhoto>
+
 </template>
 <script>
 import SinglePhoto from '@/components/shared/SinglePhoto.vue';

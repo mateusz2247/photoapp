@@ -36,7 +36,7 @@
 				icon="pi pi-plus" />
 		</div>
 		<div class="col">
-			<ImageUpload></ImageUpload>
+			<ImageUpload @choose="file" ></ImageUpload>
 			<Message severity="success" v-show="isSuccess">Success! Your photo has been submitted</Message>
 			<Message severity="error" v-show="isError">Oops… something went wrong…</Message>
 		</div>
@@ -78,7 +78,10 @@ export default {
 			formData.append("title", this.form.title);
 			formData.append("author", this.form.author);
 			formData.append("description", this.form.description);
-			formData.append("category", this.form.category);
+			formData.append("category", this.form.category.name);
+			formData.append("file", this.file)
+
+
 			//jak dodac file?
 			await axios.post(`${apiUrl}/photos`, formData, {
 				"Content-Type": "multipart/form-data",
