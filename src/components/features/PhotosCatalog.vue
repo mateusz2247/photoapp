@@ -6,7 +6,7 @@
 		<h1>Error! Try again....</h1>
 	</div>
 	<div ref="catalog" class="scrollContainer">
-		<PhotosList @vote="addVote2($event)" class="grid" :photos="photos"></PhotosList>
+		<PhotosList :isHomePage="category ? false : true" @vote="addVote2($event)" class="grid" :photos="photos"></PhotosList>
 	</div>
 </template>
 <script>

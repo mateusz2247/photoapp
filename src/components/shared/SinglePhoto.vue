@@ -4,13 +4,17 @@
 		:visible="true"
 		:style="{ width: '50vw' }"
 		:modal="true">
-		<div>
-			<Img :src="imageSrc"></Img>
+		<div v-if="!imageSrc"><p>wczytuje dane</p></div>
+		<div v-if="imageSrc">
+
+			<div>
+				<Img :src="imageSrc"></Img>
+			</div>
+			<h1>{{ photo.title }}</h1>
+			<h3>{{ "by " + photo.author }}</h3>
+			<h3>{{ "votes: " + photo.votes }}</h3>
+			<Tag severity="info" rounded>{{ photo.category }} </Tag>
 		</div>
-		<h1>{{ photo.title }}</h1>
-		<h3>{{ "by " + photo.author }}</h3>
-		<h3>{{ "votes: " + photo.votes }}</h3>
-		<Tag severity="info" rounded>{{ photo.category }} </Tag>
 		<template v-slot:footer>
 			<Button
 				class="p-button-rounded"
@@ -46,7 +50,8 @@ export default {
 			return this.$route.params.photoId;
 		},
 		imageSrc() {
-			return `${imagesUrl}/${this.photo.src}`;
+
+			return this.photo? `${imagesUrl}/${this.photo.src}` : null;
 		},
 	},
 	methods: { ...mapActions("Photos", ["loadPhoto"]) },

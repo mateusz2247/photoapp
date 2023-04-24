@@ -10,6 +10,7 @@
 			:votes="photo.votes"
 			:src="photo.src"
 			:id="photo._id"
+			:isHomePage="isHomePage"
 			@vote="$emit('vote',photo._id)"></PhotoSummary>
 	</div>
 </template>
@@ -20,6 +21,10 @@ import PhotoSummary from "./PhotoSummary.vue";
 export default {
 	name: "PhotosList",
 	props: {
+		isHomePage:{
+			type: Boolean,
+			default: false
+		},
 
 		photos: {
 			type: Array,

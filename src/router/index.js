@@ -20,7 +20,12 @@ const routes = [
 		component: CategoryPhotosPage,
 		children: [
 			{
-				path: "/category/:category/:photoId",
+				path: "photo/:photoId",
+				name: "SinglePhotoPage",
+				component: SinglePhotoPage,
+			},
+			{
+				path: "phot",
 				name: "SinglePhotoPage",
 				component: SinglePhotoPage,
 			},
@@ -30,13 +35,13 @@ const routes = [
 		path: "/",
 		name: "HomePage",
 		component: HomePage,
-		/* children: [
+		children: [
 			{
 				path: "/photo/:photoId",
 				name: "SinglePhotoPage",
 				component: SinglePhotoPage,
 			},
-		], */
+		],
 	},
 ];
 

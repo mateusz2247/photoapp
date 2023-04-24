@@ -17,10 +17,10 @@
 			<div class="field">
 				<label class="block">Category</label>
 				<Listbox
-				optionLabel="name"
+					optionLabel="name"
 					class="category"
 					v-model="form.category"
-					:options='categories' />
+					:options="categories" />
 			</div>
 
 			<!-- description -->
@@ -36,11 +36,14 @@
 				icon="pi pi-plus" />
 		</div>
 		<div class="col">
-			<ImageUpload @choose="file" ></ImageUpload>
-			<Message severity="success" v-show="isSuccess">Success! Your photo has been submitted</Message>
-			<Message severity="error" v-show="isError">Oops… something went wrong…</Message>
+			<ImageUpload @choose="handleImage"></ImageUpload>
+			<Message severity="success" v-show="isSuccess"
+				>Success! Your photo has been submitted</Message
+			>
+			<Message severity="error" v-show="isError"
+				>Oops… something went wrong…</Message
+			>
 		</div>
-
 	</form>
 </template>
 
@@ -53,7 +56,7 @@ import Textarea from "primevue/textarea";
 import InputText from "primevue/inputtext";
 import ImageUpload from "@/components/shared/ImageUpload.vue";
 import { mapGetters } from "vuex";
-import Message from 'primevue/message';
+import Message from "primevue/message";
 export default {
 	name: "AddPhotoPage",
 	data: () => ({
@@ -70,26 +73,28 @@ export default {
 	components: { Button, Listbox, Textarea, InputText, ImageUpload, Message },
 	computed: mapGetters({ categories: "Categories/allCategories" }),
 	methods: {
+		handleImage(img) {
+			this.form.file = img;
+		},
 		async handleSubmit() {
-			this.isSuccess=false;
-			this.isError=false;
-			try{
-			const formData = new FormData();
-			formData.append("title", this.form.title);
-			formData.append("author", this.form.author);
-			formData.append("description", this.form.description);
-			formData.append("category", this.form.category.name);
-			formData.append("file", this.file)
+			this.isSuccess = false;
+			this.isError = false;
+			try {
+				const formData = new FormData();
+				formData.append("title", this.form.title);
+				formData.append("author", this.form.author);
+				formData.append("description", this.form.description);
+				formData.append("category", this.form.category.name);
+				formData.append("file", this.form.file);
 
-
-			//jak dodac file?
-			await axios.post(`${apiUrl}/photos`, formData, {
-				"Content-Type": "multipart/form-data",
-			});
-			this.isSuccess=true;
-		}catch(err){
-			this.isError=true;
-		}
+				//jak dodac file?
+				await axios.post(`${apiUrl}/photos`, formData, {
+					"Content-Type": "multipart/form-data",
+				});
+				this.isSuccess = true;
+			} catch (err) {
+				this.isError = true;
+			}
 		},
 	},
 };
