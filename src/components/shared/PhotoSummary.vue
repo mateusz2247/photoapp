@@ -4,38 +4,31 @@
 		<Card class="shadow-4 relative" style="width: 15rem">
 			<template #header>
 				<ImageItem
-					class="clickable"
+					class="clickable sized"
 					@vote="$emit('vote')"
 					:src="src"></ImageItem>
 			</template>
 			<div></div>
-			<template #title
-				><p
-					class="clickable"
-					@click="$router.push('/category/' + category + '/' + id)">
-					{{ title }}
-				</p></template
-			>
+			<template #title>
+				<router-link
+					:to="isHomePage ? 'photo/' + id : category + '/photo/' + id">
+					<p class="clickable">
+						{{ title }}
+					</p>
+				</router-link>
+			</template>
 			<template #subtitle>
-				<p
-					class="clickable"
-					@click="$router.push('/category/' + category + '/' + id)">
-					by {{ author }}
-				</p>
+				<router-link
+					:to="isHomePage ? 'photo/' + id : category + '/photo/' + id">
+					<p class="clickable">by {{ author }}</p>
+				</router-link>
 			</template>
 
 			<template #content>
 				<router-link
 					:to="isHomePage ? 'photo/' + id : category + '/photo/' + id">
-					TEst</router-link
-				>
-				<Tag
-					class="clickable"
-					@click="$router.push('/photo/' + id)"
-					severity="info"
-					rounded
-					>{{ category }}
-				</Tag>
+					<Tag class="clickable" severity="info" rounded>{{ category }} </Tag>
+				</router-link>
 				<div class="voting absolute top-0 right-0">
 					<p style="font-weight: bolder">{{ votes }}</p>
 					<Button
@@ -95,4 +88,5 @@ export default {
 .clickable {
 	cursor: pointer;
 }
+
 </style>

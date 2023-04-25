@@ -24,11 +24,7 @@ const routes = [
 				name: "SinglePhotoPage",
 				component: SinglePhotoPage,
 			},
-			{
-				path: "phot",
-				name: "SinglePhotoPage",
-				component: SinglePhotoPage,
-			},
+			
 		],
 	},
 	{
@@ -38,7 +34,7 @@ const routes = [
 		children: [
 			{
 				path: "/photo/:photoId",
-				name: "SinglePhotoPage",
+				name: "SinglePhotoPage2",
 				component: SinglePhotoPage,
 			},
 		],

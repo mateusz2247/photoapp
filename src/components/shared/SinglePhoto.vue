@@ -5,11 +5,9 @@
 		:style="{ width: '50vw' }"
 		:modal="true">
 		<div v-if="!imageSrc"><p>wczytuje dane</p></div>
-		<div v-if="imageSrc">
+		<div v-if="imageSrc" >
+			<Img :src="imageSrc"></Img>
 
-			<div>
-				<Img :src="imageSrc"></Img>
-			</div>
 			<h1>{{ photo.title }}</h1>
 			<h3>{{ "by " + photo.author }}</h3>
 			<h3>{{ "votes: " + photo.votes }}</h3>
@@ -20,7 +18,7 @@
 				class="p-button-rounded"
 				label="Close"
 				icon="pi pi-times"
-				@click="$router.push('/')"
+				@click="$router.go(-1)"
 				autofocus />
 		</template>
 	</Dialog>
@@ -50,8 +48,7 @@ export default {
 			return this.$route.params.photoId;
 		},
 		imageSrc() {
-
-			return this.photo? `${imagesUrl}/${this.photo.src}` : null;
+			return this.photo ? `${imagesUrl}/${this.photo.src}` : null;
 		},
 	},
 	methods: { ...mapActions("Photos", ["loadPhoto"]) },
@@ -70,5 +67,10 @@ export default {
 }
 .p-tag {
 	font-size: 1.2rem;
+}
+img{
+	max-height: 1200px;
+	max-width: 900px;
+	
 }
 </style>
