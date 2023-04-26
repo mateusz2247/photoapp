@@ -97,6 +97,7 @@ import Button from "primevue/button";
 import Textarea from "primevue/textarea";
 import InputText from "primevue/inputtext";
 import ImageUpload from "@/components/shared/ImageUpload.vue";
+import { useStore } from 'vuex'
 /* import { mapGetters } from "vuex"; */
 import Message from "primevue/message";
 import { Form, Field, defineRule } from "vee-validate";
@@ -123,8 +124,9 @@ defineRule(
 export default {
 	name: "AddPhotoPage",
 	props: {},
-	setup(props, { root: { $store } }) {
-		console.log(props);
+	setup() {
+		const store = useStore()
+		
 		const isSuccess = ref(false);
 		const isError = ref(false);
 		const form = reactive({
@@ -134,7 +136,8 @@ export default {
 			category: "",
 			file: null,
 		});
-		const categories = computed(() => $store.state.Categories.allCategories);
+		/* const categories = computed(() => $store.state.Categories.allCategories); */
+		const categories = computed(() => store.getters["Categories/allCategories"]);
 		function handleImage(img) {
 			form.file = img;
 		}
