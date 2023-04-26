@@ -1,5 +1,5 @@
 <template>
-	<Form v-slot="{ errors }" class="grid" @submit.prevent="handleSubmit">
+	<Form v-slot="{ errors }" class="grid" @submit="handleSubmit">
 		<div class="col">
 			<!-- title -->
 
@@ -97,10 +97,12 @@ import Button from "primevue/button";
 import Textarea from "primevue/textarea";
 import InputText from "primevue/inputtext";
 import ImageUpload from "@/components/shared/ImageUpload.vue";
-import { mapGetters } from "vuex";
+/* import { mapGetters } from "vuex"; */
 import Message from "primevue/message";
 import { Form, Field, defineRule } from "vee-validate";
+import { ref, reactive, computed } from "vue";
 import { required, min, max, ext } from "@vee-validate/rules";
+
 defineRule(
 	"required",
 	(value) => required(value) || "This field is so so required..."
@@ -120,7 +122,46 @@ defineRule(
 );
 export default {
 	name: "AddPhotoPage",
-	data: () => ({
+	props: {},
+	setup(props, { root: { $store } }) {
+		console.log(props);
+		const isSuccess = ref(false);
+		const isError = ref(false);
+		const form = reactive({
+			title: "",
+			author: "",
+			description: "",
+			category: "",
+			file: null,
+		});
+		const categories = computed(() => $store.state.Categories.allCategories);
+		function handleImage(img) {
+			form.file = img;
+		}
+		async function handleSubmit() {
+			isSuccess.value = false;
+			isError.value = false;
+			try {
+				const formData = new FormData();
+				formData.append("title", form.title);
+				formData.append("author", form.author);
+				formData.append("description", form.description);
+				formData.append("category", form.category.name);
+				formData.append("file", form.file);
+
+				//jak dodac file?
+				await axios.post(`${apiUrl}/photos`, formData, {
+					"Content-Type": "multipart/form-data",
+				});
+				isSuccess.value = true;
+			} catch (err) {
+				isError.value = true;
+			}
+		}
+
+		return { isSuccess, isError, form, handleImage, handleSubmit, categories };
+	},
+	/* data: () => ({
 		isSuccess: false,
 		isError: false,
 		form: {
@@ -130,7 +171,7 @@ export default {
 			category: "",
 			file: null,
 		},
-	}),
+	}), */
 	components: {
 		Button,
 		Listbox,
@@ -141,8 +182,8 @@ export default {
 		Form,
 		Field,
 	},
-	computed: mapGetters({ categories: "Categories/allCategories" }),
-	methods: {
+	/* computed: mapGetters({ categories: "Categories/allCategories" }), */
+	/* methods: {
 		handleImage(img) {
 			this.form.file = img;
 		},
@@ -166,7 +207,7 @@ export default {
 				this.isError = true;
 			}
 		},
-	},
+	}, */
 };
 </script>
 <style>
